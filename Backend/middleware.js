@@ -22,8 +22,6 @@ export const authMiddleware = (req,res,next)=>{
                 msg : "Invalid user"
             })
         }
-
-        next();
     }catch(err){
         res.status(401).json({
             msg : "Invalid token"
