@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken"
 import { JWT_SECRET } from "../config.js"
 import { authMiddleware } from "../middleware.js"
 
-const userRouter = express.Router()
+const router = express.Router()
 
-userRouter.post("/Signup", async (req,res)=>{
+router.post("/Signup", async (req,res)=>{
     const result = userValidSchema.safeParse(req.body);
 
     if(!result.success){
@@ -41,7 +41,7 @@ userRouter.post("/Signup", async (req,res)=>{
 
 
 
-userRouter.put("/", authMiddleware, async (req,res)=>{
+router.put("/", authMiddleware, async (req,res)=>{
     const {success} = updateUserSchema.safeParse(req.body);
 
     if(!success){
@@ -62,4 +62,28 @@ userRouter.put("/", authMiddleware, async (req,res)=>{
     })
 })
 
-export default userRouter;
+
+router.get("/getRoute", authMiddleware, async (req,res)=>{
+    const search = req.query.search
+
+    const users = await User.find({
+        $or : [
+            {firstName : {$regex : search, $options : "i"}},
+            {lastName : {$regex : search, $options : "i"}}
+        ]
+    })
+
+    console.log(users)
+
+    if (users.length === 0){
+        return res.status(404).json({
+            msg : "No users found"
+        })
+    }else{
+        return res.json({
+            users
+        })
+    }
+})
+
+export default router;
