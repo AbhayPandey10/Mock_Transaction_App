@@ -79,13 +79,13 @@ router.get("/getRoute", authMiddleware, async (req,res)=>{
         })
     }else{
         return res.json({
-            "users" : users.map((user)=>{
-                return ({
+            "users" : users.map((user)=> ({
                     username : user.username,
                     firstName : user.firstName,
-                    lastName : user.lastName
+                    lastName : user.lastName,
+                    _id : user._id
                 })
-            })
+            )
         })
     }
 })
