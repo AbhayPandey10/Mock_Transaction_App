@@ -64,7 +64,7 @@ router.put("/", authMiddleware, async (req,res)=>{
 
 
 router.get("/getRoute", authMiddleware, async (req,res)=>{
-    const search = req.query.search
+    const search = req.query.search || ""
 
     const users = await User.find({
         $or : [
@@ -73,15 +73,19 @@ router.get("/getRoute", authMiddleware, async (req,res)=>{
         ]
     })
 
-    console.log(users)
-
     if (users.length === 0){
         return res.status(404).json({
             msg : "No users found"
         })
     }else{
         return res.json({
-            users
+            "users" : users.map((user)=>{
+                return ({
+                    username : user.username,
+                    firstName : user.firstName,
+                    lastName : user.lastName
+                })
+            })
         })
     }
 })
