@@ -1,6 +1,6 @@
 import express from "express"
 import { userValidSchema, updateUserSchema } from "../validation/userValidation.js"
-import { User } from "../database.js"
+import { User, Account } from "../database.js"
 import jwt from "jsonwebtoken"
 import { JWT_SECRET } from "../config.js"
 import { authMiddleware } from "../middleware.js"
@@ -27,6 +27,13 @@ router.post("/Signup", async (req,res)=>{
     }
 
     const newUser = await User.create(req.body);
+
+    const userId = newUser._id;
+
+    const newAccount = await Account.create({
+        userId,
+        balance : 1 + Math.random() * 10000
+    })
 
     const token = jwt.sign({
         userId : newUser._id
