@@ -1,5 +1,5 @@
 import express from "express"
-import { userValidSchema, updateUserSchema } from "../validation/userValidation.js"
+import { userValidSchema, updateUserSchema, signinSchema } from "../validation/userValidation.js"
 import { User, Account } from "../database.js"
 import jwt from "jsonwebtoken"
 import { JWT_SECRET } from "../config.js"
@@ -46,6 +46,35 @@ router.post("/Signup", async (req,res)=>{
 
 })
 
+
+router.post("/Signin", async (req,res)=>{
+    const { success } = signinSchema.safeParse(req.body);
+
+    if(!success){
+        return res.status(411).json({
+            message : "Error while logging in"
+        })
+    }
+
+    const user = await User.findOne({
+        username : req.body.username,
+        password : req.body.password
+    })
+
+    if(!user){
+        return res.status(411).json({
+            message : "Error while logging in"
+        })
+    }
+
+    const token = jwt.sign({
+        userId : user._id
+    },JWT_SECRET);
+
+    res.json({
+        token : token
+    })
+})
 
 
 router.put("/", authMiddleware, async (req,res)=>{

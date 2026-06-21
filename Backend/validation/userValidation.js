@@ -12,3 +12,8 @@ export const updateUserSchema = z.object({
   lastName : z.string().optional(),
   password : z.string().optional()
 })
+
+export const signinSchema = z.object({
+  username : z.string(),
+  password : z.string()
+})
