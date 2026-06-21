@@ -5,10 +5,10 @@ export function AppBar(){
                 Payment App
             </div>
             <div className = "flex">
-                <div className = "flex flex-col justify-center h-full mr-2.5">
+                <div className = "flex flex-col justify-center h-full mr-2.5 ">
                     Hello
                 </div>
-                <div className = "rounded-full h-8 w-8 bg-slate-200 flex justify-center mr-4 mt-3">
+                <div className = "rounded-full h-10 w-10 bg-slate-200 flex justify-center mr-4 mt-2">
                     <div className = "flex flex-col justify-center h-full text-s">
                         A
                     </div>

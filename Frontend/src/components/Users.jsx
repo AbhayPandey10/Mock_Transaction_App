@@ -13,10 +13,10 @@ export function Users(){
     }])
 
     return (<>
-        <div className = "ml-4 font-bold text-lg">
+        <div className = "ml-8 font-bold text-lg">
             Users
         </div>
-        <div className = "mx-4 mt-2">
+        <div className = "mx-8 mt-2">
             <input type = "text" placeholder = "Search users..." className = "border border-gray-300 w-full px-2 py-1 rounded-md font-medium text-sm"></input>
         </div>
         <div>
@@ -27,7 +27,7 @@ export function Users(){
 
 function User({user}){
     return (
-        <div className = "ml-6 flex justify-between">
+        <div className = "ml-10 mr-6 flex justify-between">
             <div className = "flex">
                 <div className = "rounded-full h-10 w-10 bg-slate-200 flex justify-center mt-2.75 mr-2">
                     <div className = "flex flex-col justify-center h-full text-l">
