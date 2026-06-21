@@ -16,7 +16,7 @@ export function SendMoney(){
                         <div>
                             <div className = "mt-3">
                                 <label className = "text-md font-medium leading-none peer-disabled:cursor-not-allowed" 
-                                       for = "amount">
+                                       htmlFor = "amount">
                                             Amount (in Rs)
                                 </label>    
                                 <input 

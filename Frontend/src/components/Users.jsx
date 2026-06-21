@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Button } from "./Button.jsx"
+import { useNavigate } from "react-router-dom"
 
 export function Users(){
     const [users,setUsers] = useState([{
@@ -26,6 +27,13 @@ export function Users(){
 }
 
 function User({user}){
+
+    const navigate = useNavigate()
+
+    const onClick = ()=>{
+        navigate("/SendMoney")
+    }
+
     return (
         <div className = "ml-10 mr-6 flex justify-between">
             <div className = "flex">
@@ -42,7 +50,7 @@ function User({user}){
             </div>
 
             <div className = "flex flex-col justify-center text-sm">
-                <Button label = {"Send Money"} />
+                <Button onClick = {onClick} label = {"Send Money"} />
             </div>
         </div>
     )
