@@ -7,12 +7,12 @@ import { authMiddleware } from "../middleware.js"
 
 const router = express.Router()
 
-router.post("/Signup", async (req,res)=>{
+router.post("/signup", async (req,res)=>{
     const result = userValidSchema.safeParse(req.body);
 
     if(!result.success){
         return res.status(411).json({
-            errors : result.error
+            message : "Invalid data"
         })
     }
 
@@ -47,7 +47,7 @@ router.post("/Signup", async (req,res)=>{
 })
 
 
-router.post("/Signin", async (req,res)=>{
+router.post("/signin", async (req,res)=>{
     const { success } = signinSchema.safeParse(req.body);
 
     if(!success){
