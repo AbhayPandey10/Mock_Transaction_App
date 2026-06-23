@@ -1,4 +1,13 @@
+import { useSearchParams} from "react-router-dom"
+
 export function SendMoney(){
+    
+    const [searchParams] = useSearchParams()
+    console.log(searchParams)
+
+    const id = searchParams.get("id")
+    const name = searchParams.get("name")
+
     return (
         <div className = "flex justify-center h-screen bg-gray-100">
             <div className = "h-full flex flex-col justify-center">
@@ -9,9 +18,9 @@ export function SendMoney(){
                     <div className = "p-6">
                         <div className = "flex item-center">
                             <div className = "w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mr-4">
-                                <span className = "text-2xl text-white">A</span>
+                                <span className = "text-2xl text-white">{name[0].toUpperCase()}</span>
                             </div>
-                            <h3 className = "text-2xl font-semibold pt-2">Friend's Name</h3>
+                            <h3 className = "text-2xl font-semibold pt-2">{name}</h3>
                         </div>
                         <div>
                             <div className = "mt-3">

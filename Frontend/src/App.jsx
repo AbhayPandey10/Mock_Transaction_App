@@ -10,10 +10,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path = "/SignUp" element = {<SignUp></SignUp>}></Route>
-        <Route path = "/SignIn" element = {<SignIn></SignIn>}></Route>
-        <Route path = "/Dashboard" element = {<Dashboard></Dashboard>}></Route>
-        <Route path = "/SendMoney" element = {<SendMoney></SendMoney>}></Route>
+        <Route path = "/signup" element = {<SignUp></SignUp>}></Route>
+        <Route path = "/signin" element = {<SignIn></SignIn>}></Route>
+        <Route path = "/dashboard" element = {<Dashboard></Dashboard>}></Route>
+        <Route path = "/send" element = {<SendMoney></SendMoney>}></Route>
       </Routes>
     </BrowserRouter>
   )

@@ -47,7 +47,7 @@ function User({user}){
     const navigate = useNavigate()
 
     const onClick = ()=>{
-        navigate("/SendMoney")
+        navigate("/send?id=" + user._id + "&name=" + user.firstName)
     }
 
     return (
