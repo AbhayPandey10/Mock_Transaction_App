@@ -99,31 +99,38 @@ router.put("/", authMiddleware, async (req,res)=>{
 })
 
 
-router.get("/getRoute", authMiddleware, async (req,res)=>{
-    const search = req.query.search || ""
+router.get("/getUsers", authMiddleware, async (req,res)=>{
+    const search = (req.query.search || "").trimStart()
 
-    const users = await User.find({
-        $or : [
-            {firstName : {$regex : search, $options : "i"}},
-            {lastName : {$regex : search, $options : "i"}}
-        ]
-    })
+    const searchArray = search.split(" ")
 
-    if (users.length === 0){
-        return res.status(404).json({
-            msg : "No users found"
+    let users = []
+
+    if(searchArray.length === 1){   
+        users = await User.find({
+            $or : [
+                {firstName : {$regex : search, $options : "i"}},
+                {lastName : {$regex : search, $options : "i"}}
+            ]
         })
     }else{
-        return res.json({
-            "users" : users.map((user)=> ({
-                    username : user.username,
-                    firstName : user.firstName,
-                    lastName : user.lastName,
-                    _id : user._id
-                })
-            )
+        users = await User.find({
+            $and : [
+                {firstName : {$regex : searchArray[0], $options : "i"}},
+                {lastName : {$regex : searchArray[1], $options : "i"}}
+            ]
         })
     }
+
+    return res.json({
+        "users" : users.map((user)=> ({
+                username : user.username,
+                firstName : user.firstName,
+                lastName : user.lastName,
+                _id : user._id
+            })
+        )
+    })
 })
 
 export default router;
