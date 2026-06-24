@@ -1,4 +1,4 @@
-export function Balance({value}){
+export function Balance({value}){  
     return (
         <div className = " flex py-4 text-lg">
             <div className = "font-bold  mx-8">
