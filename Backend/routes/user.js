@@ -41,7 +41,12 @@ router.post("/signup", async (req,res)=>{
 
     res.json({
         msg : "User created successfully",
-        token : token
+        token : token,
+        user : {
+            firstName : newUser.firstName,
+            lastName : newUser.lastName,
+            username : newUser.username
+        }
     })
 
 })
@@ -72,7 +77,12 @@ router.post("/signin", async (req,res)=>{
     },JWT_SECRET);
 
     res.json({
-        token : token
+        token : token,
+        user : {
+            firstName : user.firstName,
+            lastName : user.lastName,
+            username : user.username
+        }
     })
 })
 
